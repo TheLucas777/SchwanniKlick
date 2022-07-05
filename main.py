@@ -77,28 +77,22 @@ def load():
     sps = sql.get_main_sps()
     label2.config(text=str(sps) + " SPS")
     if(number == 1):
-        label1.config(text=str(number) + " Sperm")
+        label1.config(text="{:2f} Sperm".format(number))
     else:
-        label1.config(text=str(number) + " Sperms")
+        label1.config(text="{:2f} Sperms".format(number))
 
     print("Loaded")
     main()
-def sps():
-    print("SPS")
-    #global number
-    #global sps
-    #print(sps)
-    #number += sps
-    #label1.config(text=str(number) + " Sperms")
+
 
 def click():
     global number
     number += 1
 
     if(number == 1):
-        label1.config(text=str(number) + " Sperm")
+        label1.config(text="{:.1f} Sperm".format(number))
     else:
-        label1.config(text=str(number) + " Sperms")
+        label1.config(text="{:.1f} Sperms".format(number))
     main()
 
 
@@ -166,9 +160,11 @@ load()
 #load.grid(row=0, column=3, sticky=N)
 
 root.after(10, main)
-#root.after(1000, sps)
 root.state('zoomed')
 
 while(True):
-    root.mainloop()
-
+    root.update()
+    time.sleep(0.1)
+    number += sps/10
+    main()
+    label1.config(text="{:.1f} Sperm".format(number))
