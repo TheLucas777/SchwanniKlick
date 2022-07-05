@@ -32,7 +32,7 @@ def create_table():
     # create upgrades table
     for i in range(1, 13):
         price = math.pow(i, 6)
-        sps = (math.sqrt(i)) / 2 * (i / 2)
+        sps = ((math.sqrt(price)) / 2) * (i / 2)
         conn.execute("CREATE TABLE IF NOT EXISTS kind" + str(i) +
                      "(amount INTEGER NOT NULL, "
                      "price NUMERIC NOT NULL, "
@@ -68,7 +68,7 @@ def get_kind_sps(numberOfKind):
     ret = None
     conn = sqlite3.connect('data.db')
 
-    cursor = conn.execute("SELECT sps FROM kind" + str(numberOfKind))
+    cursor = conn.execute("SELECT spermspersec FROM kind" + str(numberOfKind))
     for row in cursor:
         ret = row[0]
 
